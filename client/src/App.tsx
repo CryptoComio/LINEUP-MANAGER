@@ -1,3 +1,1 @@
-export default function App() {
-  return <h1>Fifa Lineup Manager</h1>;
-}
+export { default } from "./App";
