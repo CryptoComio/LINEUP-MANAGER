@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(220, 8%, 8%);
+  --foreground: hsl(210, 40%, 96%);
+  --card: hsl(220, 8%, 12%);
+  --card-foreground: hsl(210, 40%, 96%);
+  --popover: hsl(220, 8%, 12%);
+  --popover-foreground: hsl(210, 40%, 96%);
+  --primary: hsl(142, 76%, 36%);
+  --primary-foreground: hsl(355, 7%, 97%);
+  --secondary: hsl(215, 27%, 24%);
+  --secondary-foreground: hsl(210, 40%, 96%);
+  --muted: hsl(215, 27%, 17%);
+  --muted-foreground: hsl(217, 10%, 64%);
+  --accent: hsl(142, 76%, 36%);
+  --accent-foreground: hsl(355, 7%, 97%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(215, 27%, 24%);
+  --input: hsl(215, 27%, 24%);
+  --ring: hsl(142, 76%, 36%);
+  --chart-1: hsl(142, 76%, 36%);
+  --chart-2: hsl(160, 60%, 45%);
+  --chart-3: hsl(30, 80%, 55%);
+  --chart-4: hsl(280, 65%, 60%);
+  --chart-5: hsl(340, 75%, 55%);
+  --sidebar: hsl(220, 8%, 12%);
+  --sidebar-foreground: hsl(210, 40%, 96%);
+  --sidebar-primary: hsl(142, 76%, 36%);
+  --sidebar-primary-foreground: hsl(355, 7%, 97%);
+  --sidebar-accent: hsl(215, 27%, 17%);
+  --sidebar-accent-foreground: hsl(142, 76%, 36%);
+  --sidebar-border: hsl(215, 27%, 24%);
+  --sidebar-ring: hsl(142, 76%, 36%);
+  --font-sans: Inter, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: 0.75rem;
+  --shadow-2xs: 0px 2px 0px 0px hsl(142, 76%, 36% / 0.05);
+  --shadow-xs: 0px 2px 0px 0px hsl(142, 76%, 36% / 0.05);
+  --shadow-sm: 0px 2px 0px 0px hsl(142, 76%, 36% / 0.05), 0px 1px 2px -1px hsl(142, 76%, 36% / 0.05);
+  --shadow: 0px 2px 0px 0px hsl(142, 76%, 36% / 0.05), 0px 1px 2px -1px hsl(142, 76%, 36% / 0.05);
+  --shadow-md: 0px 2px 0px 0px hsl(142, 76%, 36% / 0.05), 0px 2px 4px -1px hsl(142, 76%, 36% / 0.05);
+  --shadow-lg: 0px 2px 0px 0px hsl(142, 76%, 36% / 0.05), 0px 4px 6px -1px hsl(142, 76%, 36% / 0.05);
+  --shadow-xl: 0px 2px 0px 0px hsl(142, 76%, 36% / 0.05), 0px 8px 10px -1px hsl(142, 76%, 36% / 0.05);
+  --shadow-2xl: 0px 2px 0px 0px hsl(142, 76%, 36% / 0.05);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+}
+
+.dark {
+  --background: hsl(220, 8%, 8%);
+  --foreground: hsl(210, 40%, 96%);
+  --card: hsl(220, 8%, 12%);
+  --card-foreground: hsl(210, 40%, 96%);
+  --popover: hsl(220, 8%, 12%);
+  --popover-foreground: hsl(210, 40%, 96%);
+  --primary: hsl(142, 76%, 36%);
+  --primary-foreground: hsl(355, 7%, 97%);
+  --secondary: hsl(215, 27%, 24%);
+  --secondary-foreground: hsl(210, 40%, 96%);
+  --muted: hsl(215, 27%, 17%);
+  --muted-foreground: hsl(217, 10%, 64%);
+  --accent: hsl(142, 76%, 36%);
+  --accent-foreground: hsl(355, 7%, 97%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(215, 27%, 24%);
+  --input: hsl(215, 27%, 24%);
+  --ring: hsl(142, 76%, 36%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Soccer Field Styles */
+.soccer-field {
+  background: linear-gradient(45deg, 
+    hsl(142, 69%, 25%) 0%, 
+    hsl(142, 69%, 30%) 25%, 
+    hsl(142, 69%, 25%) 50%, 
+    hsl(142, 69%, 30%) 75%, 
+    hsl(142, 69%, 25%) 100%);
+  background-size: 40px 40px;
+  position: relative;
+}
+
+.field-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    /* Center circle */
+    radial-gradient(circle at center, transparent 80px, white 80px, white 82px, transparent 84px),
+    /* Center line */
+    linear-gradient(to right, transparent calc(50% - 1px), white calc(50% - 1px), white calc(50% + 1px), transparent calc(50% + 1px)),
+    /* Penalty areas */
+    linear-gradient(to bottom, transparent 15%, white 15%, white 17%, transparent 17%),
+    linear-gradient(to bottom, transparent 83%, white 83%, white 85%, transparent 85%),
+    /* Goal areas */
+    linear-gradient(to bottom, transparent 25%, white 25%, white 27%, transparent 27%),
+    linear-gradient(to bottom, transparent 73%, white 73%, white 75%, transparent 75%);
+  opacity: 0.8;
+}
+
+.player-position {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.player-position:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+}
+
+/* Custom scrollbar styles */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(142, 76%, 36%) hsl(215, 27%, 17%);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: hsl(215, 27%, 17%);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: hsl(142, 76%, 36%);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: hsl(142, 76%, 40%);
+}
