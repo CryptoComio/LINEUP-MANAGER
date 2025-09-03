@@ -1,41 +1,26 @@
-# Fifa Lineup Manager
+# FifaLineupManager — Avvio & Deploy
 
-Simple full-stack app with a React + Vite client and an Express server written in TypeScript.
-
-## Development
-
+## Sviluppo
 ```bash
 npm install
 npm run dev
 ```
 
-The command above starts both the API server (with `tsx` in watch mode) and the Vite dev server.
-
-## Production
-
+## Produzione
 ```bash
 npm run build
 npm start
 ```
 
-`build` bundles the client into `dist/public` and compiles the server into `dist/index.js`. `start` runs the compiled server on `process.env.PORT || 8080` and serves the static client with a SPA fallback.
+- Il server legge `PORT` (default 5000) e risponde a `GET /healthz` con `200`.
+- In produzione serve la build Vite da `dist/public` e fa SPA fallback su `index.html` per rotte non-API.
 
 ## Docker
-
 ```bash
-docker build -t lineup-manager .
-docker run -p 8080:8080 lineup-manager
+docker build -t fifalineup:latest .
+docker run -p 5000:5000 -e PORT=5000 fifalineup:latest
+curl -fsSL http://localhost:5000/healthz
 ```
 
-## Deploy on Render
-
-Create a new **Web Service** and set:
-
-- **Build Command**: `npm run build`
-- **Start Command**: `npm start`
-
-Expose port `8080` (or the value of `PORT` if provided).
-
-## Health Check
-
-A health endpoint is available at `GET /healthz` which returns `200 OK` with body `ok`.
+## CI (GitHub Actions)
+Il workflow `.github/workflows/ci.yml` esegue install, check e build su ogni push/PR (Node 20).

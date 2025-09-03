@@ -1,15 +1,21 @@
-# Build stage
-FROM node:20 AS build
+# ---- build stage ----
+FROM node:20-alpine AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN npm run build
 
-# Run stage
-FROM node:20-alpine AS run
-WORKDIR /app
-COPY --from=build /app/dist ./dist
+# ---- run stage ----
+FROM node:20-alpine
 ENV NODE_ENV=production
-EXPOSE 8080
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --omit=dev
+COPY --from=build /app/dist ./dist
+
+# Default port is provided by platform; fall back to 5000
+ENV PORT=5000
+EXPOSE 5000
+
 CMD ["node", "dist/index.js"]
